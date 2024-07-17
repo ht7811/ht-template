@@ -59,3 +59,15 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+
+## 用到的插件
+
+### vite-plugin-pages
+
+### unplugin-auto-import
+
+### unplugin-vue-components
+
+### @vueuse/core
+
+### vite-plugin-vue-layouts
