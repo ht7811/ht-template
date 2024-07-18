@@ -1,7 +1,6 @@
 <script setup lang="ts"></script>
 
 <template>
-  5555555
   <RouterView />
 </template>
 

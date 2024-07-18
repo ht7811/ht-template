@@ -1,23 +1,30 @@
-<script setup lang="ts">
-import { useRegisterSW } from 'virtual:pwa-register/vue'
-const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW()
+<template>
+  <div>home</div>
+</template>
 
-async function close() {
-  offlineReady.value = false
-  needRefresh.value = false
-}
+<script setup lang="ts">
+import { registerSW } from 'virtual:pwa-register'
+
+onMounted(() => {
+  registerSW({
+    immediate: true,
+    onNeedRefresh() {
+      console.log('有文件需更新了')
+    },
+    onRegisteredSW(url, registration) {
+      console.log(url, registration)
+      setInterval(() => {
+        registration && registration.update()
+      }, 5000)
+    }
+  })
+})
 </script>
 
-<template>
-  <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
-    <div class="message">
-      <span v-if="offlineReady"> App ready to work offline </span>
-      <span v-else> New content available, click on reload button to update. </span>
-    </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()">Reload</button>
-    <button @click="close">Close</button>
-  </div>
-</template>
+<route lang="yaml">
+meta:
+  layout: default
+</route>
 
 <style>
 .pwa-toast {

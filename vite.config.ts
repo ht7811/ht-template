@@ -58,7 +58,27 @@ export default defineConfig({
       layoutsDirs: 'src/layouts', // 布局文件存放目录
       defaultLayout: 'default' //对应 src/layouts/default.vue
     }),
-    VitePWA({})
+    VitePWA({
+      manifest: {
+        name: 'Vite App',
+        short_name: 'Vite App',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: '/192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
+      },
+      // 自动更新
+      registerType: 'autoUpdate'
+    })
   ],
   resolve: {
     alias: {
